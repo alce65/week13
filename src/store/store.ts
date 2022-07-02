@@ -6,6 +6,8 @@ import {
     ThunkAction,
 } from '@reduxjs/toolkit';
 import { iNote } from '../features/notes/models/note';
+
+import counterReducer from '../features/counter/counterSlice';
 import {
     // notesReducer,
     notesReducer2,
@@ -13,10 +15,15 @@ import {
 
 export const store = configureStore({
     preloadedState: {
+        counter: {
+            value: 0,
+            status: 'idle',
+        },
         notes: [],
         // notes2: [],
     },
     reducer: {
+        counter: counterReducer,
         notes: notesReducer2 as Reducer<iNote[], AnyAction>,
         // notes2: notesReducer2,
     },
